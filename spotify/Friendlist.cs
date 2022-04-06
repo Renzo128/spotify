@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using person;
 namespace friendlist
 {
-    internal class Friendlist
+    public class Friendlist
     {
     }
 }
