@@ -14,7 +14,10 @@ namespace person
             get { return name; }
             set { name = value; }
         }
-        private Friendlist friendlist { get; set; }
+        private Friendlist friendlist { 
+            get { return friendlist; } 
+            set { friendlist = value; }
+        }
         private PlaylistLibrary playlistlibrary
         {
             get {  return playlistlibrary; }
