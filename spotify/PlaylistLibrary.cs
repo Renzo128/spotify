@@ -20,20 +20,30 @@ namespace playlistlibrary
         public PlaylistLibrary(Playlist playlist, Person person)
         {
             library.Add(playlist);
-            this.amountOfPlaylist = this.amountOfPlaylist + 1;
+            this.amountOfPlaylist++;
             this.name = person;
         }
-        public void getAllPlaylists()
+        public List<Playlist> getAllPlaylists()
         {
-
+            return library;
         }
         public void playPlaylist(Playlist playlist)
         {
 
         }
-        public void getPlaylistName()
+        public bool getPlaylistName(string input)
         {
+            foreach (var item in this.library)
+            {
+                if(item.Playlistname == input)
+                {
+                    return true;
+                }
 
+            }
+            return false;
+            //var exists = this.getAllPlaylists().Where(library => library.Playlistname == input);
+            //Console.WriteLine(exists.ToList());
         }
         public void deletePlaylist(Playlist playlist)
         {
@@ -44,6 +54,28 @@ namespace playlistlibrary
         {
             this.library.Add(playlist);
             Console.WriteLine("Playlist is added");
+            this.amountOfPlaylist++;
+
+        }
+
+        public void readList()
+        {
+            foreach (var item in this.library)
+            {
+                Console.WriteLine(item.Playlistname);
+            }
+        }
+        public Playlist getSelectedPlaylist(string input)
+        {
+            foreach (var item in this.library)
+            {
+                if (item.Playlistname == input)
+                {
+                    return item;
+                }
+
+            }
+            return null;
         }
     }
 }

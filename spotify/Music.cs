@@ -12,6 +12,8 @@ namespace music
         private int length;
         private string artist;
         private string genre;
+
+        public string Name { get { return name; } set { this.name = value; } }
         public Music(string name, int length, string artist , string genre)
         {
             this.name = name;

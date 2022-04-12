@@ -9,7 +9,8 @@ namespace person
 {
     public class Person
     {
-        protected string name
+        private string name;
+            public string Name
         {
             get { return name; }
             set { name = value; }

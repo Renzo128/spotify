@@ -8,13 +8,15 @@ namespace playlist
 {
     public class Playlist
     {
-        private string playlistname;
+        protected string playlistname;
         private List<Music> songlist = new List<Music>();
 
         public Playlist(string playlistname)
         {
             this.playlistname = playlistname;
         }
+
+        public string Playlistname { get { return playlistname; } }
         public void addsong(Music music)
         {
             songlist.Add(music);
@@ -23,13 +25,29 @@ namespace playlist
         {
             songlist.Remove(music);
         }
-        public void getSongName()
+        public Music getSongName(string input)
         {
 
+            foreach (var item in this.songlist)
+            {
+                if (item.Name == input)
+                {
+                    return item;
+                }
+
+            }
+            return null;
         }
         public void musicRandomOrder()
         {
 
+        }
+        public void readList()
+        {
+            foreach (var item in this.songlist)
+            {
+                Console.WriteLine(item.Name);
+            }
         }
 
     }

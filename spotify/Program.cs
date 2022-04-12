@@ -16,6 +16,16 @@ namespace Spotify{
             Music nummer2 = new Music("song2", 180, "name2", "genre2");
             Music nummer3 = new Music("song3", 150, "name3", "genre3");
             Music nummer4 = new Music("song4", 90, "name4", "genre4");
+            Person name = new Person("Renzo");
+            Playlist alleMuziek = new Playlist("allMusic");
+            alleMuziek.addsong(nummer1);
+            alleMuziek.addsong(nummer2);
+            alleMuziek.addsong(nummer3);
+            alleMuziek.addsong(nummer4);
+
+            PlaylistLibrary musicHolder = new PlaylistLibrary(name);
+            Playlist testList = new Playlist("test");
+            musicHolder.createPlaylist(testList);
             string input = "start";
 
             while (input != "stop" )
@@ -31,23 +41,74 @@ namespace Spotify{
                 Console.WriteLine("\n");
                 if(input == "playlist")
                 {   // eigen afspeellijsten inkijken
-                    while (input != "terug") { 
-                    Console.WriteLine("Ik ben hier");
-                        Console.WriteLine("type terug om terug te gaan");
+                    int length = musicHolder.getAllPlaylists().Count;
+                    if (length != 0)
+                    {
+                        musicHolder.readList();
+
+                        Console.WriteLine("Kies een playlist");
                         input = Console.ReadLine();
-                        if (input == "toevoegen")
+                        if (input == null)
                         {
-
                         }
-                        else if (input == "verwijderen")
+                        else
                         {
+                            if (musicHolder.getPlaylistName(input) == true)
+                            {
+                                Playlist selected_playlist = musicHolder.getSelectedPlaylist(input);
+                                while (input != "terug")
+                                {
+                                    Console.WriteLine("type terug om terug te gaan");
+                                    input = Console.ReadLine();
+                                    if (input == "toevoegen")
+                                    {
 
-                        }
-                        else if (input == "afspelen")
-                        {
+                                        Console.WriteLine("Hier");
+                                        alleMuziek.readList();
+                                        input = Console.ReadLine();
+                                        Console.WriteLine();
+                                        Music selected_Song = alleMuziek.getSongName(input);
+                                        if (selected_Song != null)
+                                        {
+                                            selected_playlist.addsong(selected_Song);
+                                        }
+                                    }
+                                    else if (input == "verwijderen")
+                                    {
 
+                                    }
+                                    else if (input == "afspelen")
+                                    {
+
+                                    }
+                                    else if (input == "speellijst maken")
+                                    {
+
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Playlist bestaat niet");
+                            }
                         }
                     }
+                    else
+                    {
+                        Console.WriteLine("Wil je een nieuwe speellijst maken?");
+                        Console.WriteLine("Ja / Nee");
+                        input = Console.ReadLine();
+                        if (input == "Ja")
+                        {
+                            Console.WriteLine("Geef een naam voor de speellijst");
+                            input = Console.ReadLine();
+
+                            Playlist newList = new Playlist(input);
+                            musicHolder.createPlaylist(newList);
+                        }
+                    }
+                    musicHolder.getPlaylistName(input);
+
                 }
                 else if (input == "zoeken")
                 { // muziek zoeken
@@ -67,7 +128,6 @@ namespace Spotify{
                 {   // vriendenlijst inkijken
                     while (input != "terug")
                     {
-                        Console.WriteLine("ik ben hier 3");
                         Console.WriteLine("type terug om terug te gaan");
                         input = Console.ReadLine();
                         if ( input == "verzoeken")
@@ -76,7 +136,7 @@ namespace Spotify{
                         }
                         else if(input == "vrienden")
                         {
-
+                            
                         }
 
                     }
