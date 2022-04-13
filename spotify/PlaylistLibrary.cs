@@ -42,8 +42,6 @@ namespace playlistlibrary
 
             }
             return false;
-            //var exists = this.getAllPlaylists().Where(library => library.Playlistname == input);
-            //Console.WriteLine(exists.ToList());
         }
         public void deletePlaylist(Playlist playlist)
         {

@@ -10,16 +10,18 @@ namespace person
     public class Person
     {
         private string name;
+        private PlaylistLibrary playlistlibrary;
+        private Friendlist friendlist;
             public string Name
         {
             get { return name; }
             set { name = value; }
         }
-        private Friendlist friendlist { 
+        public Friendlist Friendslist { 
             get { return friendlist; } 
             set { friendlist = value; }
         }
-        private PlaylistLibrary playlistlibrary
+        public PlaylistLibrary Playlistlibraries
         {
             get {  return playlistlibrary; }
             set {playlistlibrary = value; }
