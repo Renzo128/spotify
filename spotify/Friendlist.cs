@@ -10,6 +10,7 @@ namespace friendlist
     public class Friendlist
     {
         private List<Person> friends = new List<Person>();
+        private List<Person> Verzoeken = new List<Person>();
 
         public Friendlist()
         {
@@ -28,7 +29,6 @@ namespace friendlist
                 {
                     friends.Remove(item);
                     Console.WriteLine("Vriend is verwijderd");
-                    Console.WriteLine("Vriend is verwijderd");
                     found++;
                 } 
 
@@ -40,18 +40,41 @@ namespace friendlist
 
         }
 
-        public void searchFriends(Person person)
+        public Person searchFriends(string input)
         {
-
+            foreach(var item in this.friends)
+            {
+                if (item.Name == input)
+                {
+                    Console.WriteLine("Vriend is gevonden");
+                    return item;
+                }
+            }
+            Console.WriteLine("Persoon is niet gevonden");
+            return null;
+        }
+        public void vriendVerzoeken()
+        {
+            foreach(var item in this.Verzoeken)
+            {
+                Console.Write(item.Name);
+            }
         }
 
-        public void viewPlaylistOfFriends(Person person)
+        public void verwijderVerzoeken(Person person)
         {
-
+            foreach (var item in this.Verzoeken)
+            {
+                if(person == item) 
+                {
+                    Verzoeken.Remove(item);
+                }
+            }
         }
-        public void copyPlaylist(Playlist playlist)
-        {
 
+        public void stuurVerzoek(Person person)
+        {
+            Verzoeken.Add(person);
         }
 
     }

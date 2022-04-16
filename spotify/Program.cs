@@ -16,8 +16,16 @@ namespace Spotify{
             Music nummer2 = new Music("song2", 180, "name2", "genre2");
             Music nummer3 = new Music("song3", 150, "name3", "genre3");
             Music nummer4 = new Music("song4", 90, "name4", "genre4");
+            Album album1 = new Album("naam",260,"zanger",2);
+            album1.addSong(nummer1);
+            album1.addSong(nummer2);
+            Playlist allAlbums = new Playlist("Allalbums");
+            allAlbums.addAlbum(album1);
+
 
             Person name = new Person("Renzo");
+            Friendlist allePersonen = new Friendlist();
+            allePersonen.addFriend(name);
             Friendlist friendlist = new Friendlist();
             Playlist alleMuziek = new Playlist("allMusic");
 
@@ -66,20 +74,38 @@ namespace Spotify{
                                     Console.WriteLine("type terug om terug te gaan");
                                     Console.WriteLine("type toevoegen om een nummer/album toe te voegen");
                                     Console.WriteLine("type verwijderen om een nummer te verwijderen");
-                                    Console.WriteLine("type speel lijst maken om een nieuwe speellijst te maken");
+                                    Console.WriteLine("type speellijst maken om een nieuwe speellijst te maken");
                                     Console.WriteLine("type afspelen om een afspeellijst af te spelen");
+                                    Console.WriteLine("Type delete om de speellijst te verwijderen");
                                     input = Console.ReadLine();
                                     if (input == "toevoegen")
                                     {
-
-                                        alleMuziek.readList();
-                                        Console.WriteLine("Kies een nummer om toe te voegen");
-
+                                        Console.WriteLine("type nummer om een nummer toe te voegen");
+                                        Console.WriteLine("Type album om een album toe te voegen");
                                         input = Console.ReadLine();
-                                        Music selected_Song = alleMuziek.getSongName(input);
-                                        if (selected_Song != null)
+                                        if (input == "nummer")
                                         {
-                                            selected_playlist.addsong(selected_Song);
+                                            alleMuziek.readList();
+                                            Console.WriteLine("Kies een nummer om toe te voegen");
+
+                                            input = Console.ReadLine();
+                                            Music selected_Song = alleMuziek.getSongName(input);
+                                            if (selected_Song != null)
+                                            {
+                                                selected_playlist.addsong(selected_Song);
+                                            }
+                                        }
+                                        else if(input == "album")
+                                        {
+                                            allAlbums.readList();
+                                            Console.WriteLine("Kies een album om toe te voegen");
+
+                                            input = Console.ReadLine();
+                                            Album selected_album = allAlbums.getAlbumName(input);
+                                            if (selected_album != null)
+                                            {
+                                                selected_playlist.addAlbumToPlaylist(selected_album);
+                                            }
                                         }
                                     }
                                     else if (input == "verwijderen")
@@ -105,6 +131,10 @@ namespace Spotify{
 
                                         Playlist newList = new Playlist(input);
                                         musicHolder.createPlaylist(newList);
+                                    }
+                                    else if (input == "delete")
+                                    {
+                                        musicHolder.deletePlaylist(selected_playlist);
                                     }
                                 }
                             }
@@ -187,10 +217,37 @@ namespace Spotify{
                 {   // vriendenlijst inkijken
                     while (input != "terug")
                     {
-                        Console.WriteLine("type terug om terug te gaan");
+                        Console.WriteLine("Type terug om terug te gaan");
+                        Console.WriteLine("Type zoeken om te zoeken naar vrienden");
+                        Console.WriteLine("Type vrienden om je vriendenlijst in te zien");
+                        Console.WriteLine("Type verzoeken om je vriend verzoeken in te zien");
                         input = Console.ReadLine();
                         if ( input == "verzoeken")
                         {
+                            friendlist.vriendVerzoeken();
+                            Console.WriteLine("Kies een naam om toe te voegen of verwijderen");
+                            input = Console.ReadLine();
+                            if (input != null)
+                            {
+                                Person selectedPerson = allePersonen.searchFriends(input);
+                                Console.WriteLine("Type verwijderen om de persoon te weigeren");
+                                Console.WriteLine("Type toevoegen om de persoon toe te voegen aan je vriendenlijst");
+                                input = Console.ReadLine();
+
+                                if (input == "verwijderen")
+                                {
+                                    friendlist.verwijderVerzoeken(selectedPerson);
+                                    Console.WriteLine("Verzoek is verwijderd");
+
+                                }
+                                else if (input == "toevoegen")
+                                {
+                                    friendlist.verwijderVerzoeken(selectedPerson);
+                                    friendlist.addFriend(selectedPerson);
+                                    Console.WriteLine("Vriend is toegevoegd aan vriendenlijst");
+
+                                }
+                            }
 
                         }
                         else if(input == "vrienden")
@@ -213,23 +270,40 @@ namespace Spotify{
                                 }
                                 else if (input == "speellijst")
                                 {
-                                    Console.WriteLine("Type inzien om de speellijsten in te zien");
-                                    Console.WriteLine("Type afspelen om de speellijst af te spelen");
-                                    Console.WriteLine("Type kopieren om de speellijst te kopiëren");
-
+                                    Console.WriteLine("Kies een vriend om zijn speellijsten in te zien");
                                     input = Console.ReadLine();
+                                    if (input != null) { 
+                                    Person selectedPerson = allePersonen.searchFriends(input);
+                                        if (selectedPerson != null)
+                                        { 
+                                            Console.WriteLine("Type inzien om de speellijsten in te zien");
+                                            Console.WriteLine("Type afspelen om de speellijst af te spelen");
+                                            Console.WriteLine("Type kopieren om de speellijst te kopiëren");
 
-                                    if (input == "inzien")
-                                    {
+                                            input = Console.ReadLine();
 
-                                    }
-                                    else if(input == "afspelen")
-                                    {
+                                            if (input == "inzien")
+                                            {
+                                                Console.WriteLine(selectedPerson.Playlistlibraries);
+                                            }
+                                            else if (input == "afspelen")
+                                            {
 
-                                    }
-                                    else if(input == "kopieren")
-                                    {
+                                            }
+                                            else if (input == "kopieren")
+                                            {
+                                                Console.WriteLine(selectedPerson.Playlistlibraries);
+                                                Console.WriteLine("Kies een afspeellijst");
+                                                input = Console.ReadLine();
+                                                if (input != null)
+                                                {
+                                                    PlaylistLibrary selectedLibrary = selectedPerson.Playlistlibraries;
+                                                    Playlist selectedPlaylist = selectedLibrary.getSelectedPlaylist(input);
+                                                    musicHolder.createPlaylist(selectedPlaylist);
+                                                }
 
+                                            }
+                                        }
                                     }
                                 }
 
@@ -237,6 +311,31 @@ namespace Spotify{
 
 
 
+
+                        }
+                        else if (input == "zoeken")
+                        {
+                            Console.WriteLine("Zoek een persoon op");
+                            input = Console.ReadLine();
+                            if (input != null)
+                            {
+                                Person selectedPerson = allePersonen.searchFriends(input);
+                                if (selectedPerson != null)
+                                {
+                                    Console.WriteLine("Wil je een verzoek versturen?");
+                                    Console.WriteLine("Type ja om een verzoek te sturen");
+                                    input = Console.ReadLine();
+                                    if (input == "ja")
+                                    {
+                                        Friendlist selectedFriendlist = selectedPerson.Friendslist;
+                                        selectedFriendlist.addFriend(name);
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Persoon is niet gevonden");
+                                }
+                            }
 
                         }
 

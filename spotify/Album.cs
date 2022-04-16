@@ -8,8 +8,11 @@ namespace album
 {
     public class Album
     {
-        private string Name { get; set; }
+        private string name;
+        public string Name { get { return name; } set { this.name = value; } }
+
         private List<Music> listOfSongs = new List<Music>();
+        public List<Music> Songs { get { return listOfSongs; } set { listOfSongs = value; } }
         private int length;
         private string singer;
         private int amountOfSongs;
