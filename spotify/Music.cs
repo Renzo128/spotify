@@ -14,6 +14,7 @@ namespace music
         private string genre;
 
         public string Name { get { return name; } set { this.name = value; } }
+        public int Length { get { return length; } set { this.length = value; } }
         public Music(string name, int length, string artist , string genre)
         {
             this.name = name;
@@ -24,15 +25,30 @@ namespace music
 
         public void playsong()
         {
+            int j = 0;
+            
+                Music selected_Song = this;
+                Console.WriteLine(selected_Song.Name);
+            int songLength = this.length;
 
-        }
-        public void pause()
-        {
+                do
+                {
+                    while (!Console.KeyAvailable)
+                    {
+                        System.Threading.Thread.Sleep(1000);
+                        j++;
+                    }
 
-        }
-        public void play()
-        {
+                    Console.WriteLine("Klik op escape om terug te gaan");
+                    if (Console.ReadKey(true).Key == ConsoleKey.Spacebar)
+                    {
+                        Console.WriteLine("Klik op spatie om het nummer door te spelen");
+                    }
 
+
+
+                } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
         }
+
     }
 }

@@ -12,16 +12,16 @@ namespace Spotify{
     // Main Method
         static public void Main(String[] args)
         {
-            Music nummer1 = new Music("song1",80,"name","genre1");
-            Music nummer2 = new Music("song2", 180, "name2", "genre2");
-            Music nummer3 = new Music("song3", 150, "name3", "genre3");
-            Music nummer4 = new Music("song4", 90, "name4", "genre4");
+
+            Music nummer1 = new Music("song1",5,"name","genre1");
+            Music nummer2 = new Music("song2", 10, "name2", "genre2");
+            Music nummer3 = new Music("song3", 3, "name3", "genre3");
+            Music nummer4 = new Music("song4", 2, "name4", "genre4");
             Album album1 = new Album("naam",260,"zanger",2);
             album1.addSong(nummer1);
             album1.addSong(nummer2);
             Playlist allAlbums = new Playlist("Allalbums");
             allAlbums.addAlbum(album1);
-
 
             Person name = new Person("Renzo");
             Friendlist allePersonen = new Friendlist();
@@ -36,6 +36,12 @@ namespace Spotify{
 
             PlaylistLibrary musicHolder = new PlaylistLibrary(name);
             Playlist testList = new Playlist("test");
+            testList.addsong(nummer1);
+            testList.addsong(nummer2);
+            testList.addsong(nummer3);
+            testList.addsong(nummer4);
+
+
             musicHolder.createPlaylist(testList);
             name.Playlistlibraries = musicHolder;
             name.Friendslist = friendlist;
@@ -43,8 +49,6 @@ namespace Spotify{
 
             while (input != "stop" )
             {
-                Console.WriteLine("\n");
-                Console.WriteLine("*****************************************************************");
                 Console.WriteLine("type speellijst om naar playlist te gaan");
                 Console.WriteLine("type zoeken om muziek te zoeken te gaan");
                 Console.WriteLine("type vriendenlijst om naar vriendenlijst te gaan");
@@ -63,6 +67,7 @@ namespace Spotify{
                         input = Console.ReadLine();
                         if (input == null)
                         {
+                            Console.WriteLine("Je moet een playlist kiezen");
                         }
                         else
                         {
@@ -80,31 +85,44 @@ namespace Spotify{
                                     input = Console.ReadLine();
                                     if (input == "toevoegen")
                                     {
-                                        Console.WriteLine("type nummer om een nummer toe te voegen");
-                                        Console.WriteLine("Type album om een album toe te voegen");
-                                        input = Console.ReadLine();
-                                        if (input == "nummer")
-                                        {
-                                            alleMuziek.readList();
-                                            Console.WriteLine("Kies een nummer om toe te voegen");
-
+                                        while (input != "terug") { 
+                                            Console.WriteLine("Type terug om terug te gaan");
+                                            Console.WriteLine("type nummer om een nummer toe te voegen");
+                                            Console.WriteLine("Type album om een album toe te voegen");
                                             input = Console.ReadLine();
-                                            Music selected_Song = alleMuziek.getSongName(input);
-                                            if (selected_Song != null)
+                                            if (input == "nummer")
                                             {
-                                                selected_playlist.addsong(selected_Song);
+                                                alleMuziek.readList();
+                                                Console.WriteLine("Kies een nummer om toe te voegen");
+
+                                                input = Console.ReadLine();
+                                                Music selected_Song = alleMuziek.getSongName(input);
+                                                if (selected_Song != null)
+                                                {
+                                                    selected_playlist.addsong(selected_Song);
+                                                    Console.WriteLine("Nummer is toegevoegd aan afspeellijst");
+                                                }
+                                                else
+                                                {
+                                                    Console.WriteLine("Nummer bestaat niet");
+                                                }
                                             }
-                                        }
-                                        else if(input == "album")
-                                        {
-                                            allAlbums.readList();
-                                            Console.WriteLine("Kies een album om toe te voegen");
-
-                                            input = Console.ReadLine();
-                                            Album selected_album = allAlbums.getAlbumName(input);
-                                            if (selected_album != null)
+                                            else if (input == "album")
                                             {
-                                                selected_playlist.addAlbumToPlaylist(selected_album);
+                                                allAlbums.readListAlbum();
+                                                Console.WriteLine("Kies een album om toe te voegen");
+
+                                                input = Console.ReadLine();
+                                                Album selected_album = allAlbums.getAlbumName(input);
+                                                if (selected_album != null)
+                                                {
+                                                    selected_playlist.addAlbumToPlaylist(selected_album);
+                                                    Console.WriteLine("Album is toegevoegd");
+                                                }
+                                                else
+                                                {
+                                                    Console.WriteLine("Album bestaat niet");
+                                                }
                                             }
                                         }
                                     }
@@ -122,8 +140,28 @@ namespace Spotify{
                                     }
                                     else if (input == "afspelen")
                                     {
-                                        // nummer afspelen
+                                        if (selected_playlist.Songlist.Count != 0) { 
+                                        int i = 0;
+                                        int j = 0;
+                                        Console.WriteLine("Klik op spatie om de muziek te pauzeren");
+                                        Console.WriteLine("Wil je de afspeellijst in random volgorde afspelen?");
+                                        Console.WriteLine("Type ja voor random volgorde");
+                                        Console.WriteLine("type nee om de standaard volgorde af te spelen");
+                                        input = Console.ReadLine().ToLower();
+                                        if (input == "ja")
+                                        {
+                                            selected_playlist.musicRandomOrder(i, j);
+                                        }
+                                        else if (input == "nee")
+                                        {
+                                            selected_playlist.musicNormalOrder(i, j);
+                                        }
                                     }
+                                        else
+                                        {
+                                            Console.WriteLine("er staan geen nummers in de afspeellijst voeg eerst nummers toe");
+                                        }
+                                }
                                     else if (input == "speellijst maken")
                                     {
                                         Console.WriteLine("Geef een naam voor de speellijst");
@@ -135,6 +173,7 @@ namespace Spotify{
                                     else if (input == "delete")
                                     {
                                         musicHolder.deletePlaylist(selected_playlist);
+                                        input = "terug";
                                     }
                                 }
                             }
@@ -148,8 +187,8 @@ namespace Spotify{
                     {
                         Console.WriteLine("Wil je een nieuwe speellijst maken?");
                         Console.WriteLine("Ja / Nee");
-                        input = Console.ReadLine();
-                        if (input == "Ja")
+                        input = Console.ReadLine().ToLower();
+                        if (input == "ja")
                         {
                             Console.WriteLine("Geef een naam voor de speellijst");
                             input = Console.ReadLine();
@@ -173,7 +212,6 @@ namespace Spotify{
                         input = Console.ReadLine();
                         if (input == "zoeken")
                         {
-                            //alleMuziek.readList();
                             Console.WriteLine("Zoek een nummer");
 
                             input = Console.ReadLine();
@@ -186,7 +224,7 @@ namespace Spotify{
                                 input = Console.ReadLine(); 
                                 if (input == "afspelen")
                                 {
-                                    // nummer afspelen
+                                    selected_Song.playsong();
                                 }
                                 if (input == "toevoegen")
                                 {
@@ -288,7 +326,29 @@ namespace Spotify{
                                             }
                                             else if (input == "afspelen")
                                             {
-
+                                                Console.WriteLine(selectedPerson.Playlistlibraries);
+                                                Console.WriteLine("Kies een afspeellijst");
+                                                input = Console.ReadLine();
+                                                if (input != null)
+                                                {
+                                                    PlaylistLibrary selectedLibrary = selectedPerson.Playlistlibraries;
+                                                    Playlist selectedPlaylist = selectedLibrary.getSelectedPlaylist(input);
+                                                    int i = 0;
+                                                    int j = 0;
+                                                    Console.WriteLine("Klik op spatie om de muziek te pauzeren");
+                                                    Console.WriteLine("Wil je de afspeellijst in random volgorde afspelen?");
+                                                    Console.WriteLine("Type ja voor random volgorde");
+                                                    Console.WriteLine("type nee om de standaard volgorde af te spelen");
+                                                    input = Console.ReadLine().ToLower();
+                                                    if (input == "ja")
+                                                    {
+                                                        selectedPlaylist.musicRandomOrder(i, j);
+                                                    }
+                                                    else if (input == "nee")
+                                                    {
+                                                        selectedPlaylist.musicNormalOrder(i, j);
+                                                    }
+                                                }
                                             }
                                             else if (input == "kopieren")
                                             {
@@ -306,12 +366,7 @@ namespace Spotify{
                                         }
                                     }
                                 }
-
                             }
-
-
-
-
                         }
                         else if (input == "zoeken")
                         {

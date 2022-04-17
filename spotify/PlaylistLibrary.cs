@@ -46,12 +46,10 @@ namespace playlistlibrary
         public void deletePlaylist(Playlist playlist)
         {
             this.library.Remove(playlist);
-            Console.WriteLine("Playlist is removed.");
         }
         public void createPlaylist(Playlist playlist)
         {
             this.library.Add(playlist);
-            Console.WriteLine("Playlist is added");
             this.amountOfPlaylist++;
 
         }
