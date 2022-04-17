@@ -5,19 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using playlist;
 using person;
-namespace playlistlibrary
+using album;
+namespace library
 {
-    public class PlaylistLibrary
+    public class Library
     {
         private List <Playlist> library = new List<Playlist>();
+        private List<Album> albums = new List<Album>();
         private int amountOfPlaylist;
         private Person name;
 
-        public PlaylistLibrary(Person person)
+        public Library(Person person)
         {
             this.name = person;
         }
-        public PlaylistLibrary(Playlist playlist, Person person)
+        public Library(Playlist playlist, Person person)
         {
             library.Add(playlist);
             this.amountOfPlaylist++;
@@ -73,6 +75,34 @@ namespace playlistlibrary
             }
             return null;
         }
+
+        public Album getAlbumName(string input)
+        {
+
+            foreach (var item in this.albums)
+            {
+                if (item.Name == input)
+                {
+                    return item;
+                }
+
+            }
+            return null;
+        }
+
+        public void readListAlbum()
+        {
+            foreach (var item in this.albums)
+            {
+                Console.WriteLine(item.Name);
+            }
+        }
+
+        public void addAlbum(Album album)
+        {
+            albums.Add(album);
+        }
+
 
 
     }

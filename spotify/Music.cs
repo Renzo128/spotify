@@ -26,7 +26,7 @@ namespace music
         public void playsong()
         {
             int j = 0;
-            
+            string input;
                 Music selected_Song = this;
                 Console.WriteLine(selected_Song.Name);
             int songLength = this.length;
@@ -37,6 +37,20 @@ namespace music
                     {
                         System.Threading.Thread.Sleep(1000);
                         j++;
+                    if (j == songLength)
+                    {
+                        Console.WriteLine("nummer is voorbij wil je het opnieuw spelen?");
+                        Console.WriteLine("Type ja/nee");
+                        input = Console.ReadLine();
+                        if (input == "ja")
+                        {
+                            j = 0;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
                     }
 
                     Console.WriteLine("Klik op escape om terug te gaan");

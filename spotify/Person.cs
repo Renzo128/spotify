@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using playlistlibrary;
+using library;
 using friendlist;
 namespace person
 {
     public class Person
     {
         private string name;
-        private PlaylistLibrary playlistlibrary;
+        private Library playlistlibrary;
         private Friendlist friendlist;
             public string Name
         {
@@ -21,7 +21,7 @@ namespace person
             get { return friendlist; } 
             set { friendlist = value; }
         }
-        public PlaylistLibrary Playlistlibraries
+        public Library Playlistlibraries
         {
             get {  return playlistlibrary; }
             set {playlistlibrary = value; }

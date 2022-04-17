@@ -11,7 +11,7 @@ namespace playlist
     {
         protected string playlistname;
         private List<Music> songlist = new List<Music>();
-        private List<Album> albums = new List<Album>();
+
 
 
         public Playlist(string playlistname)
@@ -33,20 +33,6 @@ namespace playlist
         {
 
             foreach (var item in this.songlist)
-            {
-                if (item.Name == input)
-                {
-                    return item;
-                }
-
-            }
-            return null;
-        }
-
-        public Album getAlbumName(string input)
-        {
-
-            foreach (var item in this.albums)
             {
                 if (item.Name == input)
                 {
@@ -160,23 +146,10 @@ namespace playlist
             }
         }
 
-        public void readListAlbum()
-        {
-            foreach (var item in this.albums)
-            {
-                Console.WriteLine(item.Name);
-            }
-        }
-
-        public void addAlbum(Album album)
-        {
-            albums.Add(album);
-        }
-
         public void addAlbumToPlaylist(Album album)
         {
-            foreach(var item in album.Songs)
-            songlist.Add(item);
+            foreach (var item in album.Songs)
+                songlist.Add(item);
         }
 
     }
