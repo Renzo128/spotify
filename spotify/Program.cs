@@ -53,13 +53,32 @@ namespace Spotify{
             string input6 = "start";
 
 
+            Person test1 = new Person("test1");
+            Person test2 = new Person("test2");
+            Person test3 = new Person("test3");
+            allePersonen.addFriend(test1);
+            allePersonen.addFriend(test2);
+            allePersonen.addFriend(test3);
+
+            Library testHolder = new Library(test1);
+            Playlist testListTest = new Playlist("asdf");
+            testListTest.addsong(nummer1);
+            testHolder.createPlaylist(testListTest);
+            test1.Playlistlibraries = testHolder;
+            Friendlist friendlist2 = new Friendlist();
+
+            test1.Friendslist = friendlist2;
+            name.Friendslist.addFriend(test1);
+            name.Friendslist.stuurVerzoek(test2);
+            name.Friendslist.stuurVerzoek(test3);
+
             while (input != "stop" )    // begin programma
             {
                 input2 = "";
-                Console.WriteLine("type speellijst om naar playlist te gaan");
-                Console.WriteLine("type zoeken om muziek te zoeken te gaan");
-                Console.WriteLine("type vriendenlijst om naar vriendenlijst te gaan");
-                Console.WriteLine("type stop om te stoppen");
+                Console.WriteLine("type speellijst om naar playlist te gaan.");
+                Console.WriteLine("type zoeken om muziek te zoeken te gaan.");
+                Console.WriteLine("type vriendenlijst om naar vriendenlijst te gaan.");
+                Console.WriteLine("type stop om te stoppen.");
 
                 input = Console.ReadLine().ToLower();
                 Console.WriteLine("\n");
@@ -72,12 +91,12 @@ namespace Spotify{
                         while (input2 != "terug")
                         {
                             musicHolder.readList();
-                            Console.WriteLine("Kies een speellijst");
-                            Console.WriteLine("Type terug om terug te gaan");
+                            Console.WriteLine("Kies een speellijst.");
+                            Console.WriteLine("Type terug om terug te gaan.");
                             input2 = Console.ReadLine().ToLower();
                             if (input2 == null)
                             {
-                                Console.WriteLine("Je moet een speellijst kiezen");
+                                Console.WriteLine("Je moet een speellijst kiezen.");
                             }
                             else
                             {
@@ -87,12 +106,12 @@ namespace Spotify{
                                     while (input2 != "terug")
                                     {
                                         Console.WriteLine("\n");
-                                        Console.WriteLine("type terug om terug te gaan");
-                                        Console.WriteLine("type toevoegen om een nummer/album toe te voegen");
-                                        Console.WriteLine("type verwijderen om een nummer te verwijderen");
-                                        Console.WriteLine("type speellijst maken om een nieuwe speellijst te maken");
-                                        Console.WriteLine("type afspelen om een afspeellijst af te spelen");
-                                        Console.WriteLine("Type delete om de speellijst te verwijderen");
+                                        Console.WriteLine("type terug om terug te gaan.");
+                                        Console.WriteLine("type toevoegen om een nummer/album toe te voegen.");
+                                        Console.WriteLine("type verwijderen om een nummer te verwijderen.");
+                                        Console.WriteLine("type maken om een nieuwe speellijst te maken.");
+                                        Console.WriteLine("type afspelen om een afspeellijst af te spelen.");
+                                        Console.WriteLine("Type delete om de speellijst te verwijderen.");
                                         input2 = Console.ReadLine().ToLower();
                                         if (input2 == "toevoegen")  // muziek toevoegen aan afspeellijst
                                         {
@@ -100,16 +119,16 @@ namespace Spotify{
                                             while (input3 != "terug")
                                             {
                                                 Console.WriteLine("\n");
-                                                Console.WriteLine("Type terug om terug te gaan");
-                                                Console.WriteLine("type nummer om een nummer toe te voegen");
-                                                Console.WriteLine("Type album om een album toe te voegen");
+                                                Console.WriteLine("Type terug om terug te gaan.");
+                                                Console.WriteLine("type nummer om een nummer toe te voegen.");
+                                                Console.WriteLine("Type album om een album toe te voegen.");
                                                 input3 = Console.ReadLine().ToLower();
                                                 Console.WriteLine("\n");
                                                 if (input3 == "nummer")
                                                 {
                                                     alleMuziek.readList();
-                                                    Console.WriteLine("Kies een nummer om toe te voegen");
-                                                    Console.WriteLine("Type terug om terug te gaan");
+                                                    Console.WriteLine("Kies een nummer om toe te voegen.");
+                                                    Console.WriteLine("Type terug om terug te gaan.");
 
                                                     input4 = Console.ReadLine();
                                                     if (input4 != null)
@@ -123,30 +142,30 @@ namespace Spotify{
                                                         else if (songIsInPlaylist != null)
                                                         {
                                                             Console.WriteLine("\n");
-                                                            Console.WriteLine("nummer staat al in afspeellijst");
+                                                            Console.WriteLine("nummer staat al in afspeellijst.");
                                                         }
                                                         else if (selected_Song != null && songIsInPlaylist == null)
                                                         {
                                                             Console.WriteLine("\n");
                                                             selected_playlist.addsong(selected_Song);
-                                                            Console.WriteLine("Nummer is toegevoegd aan afspeellijst");
+                                                            Console.WriteLine("Nummer is toegevoegd aan afspeellijst.");
                                                         }
                                                         else
                                                         {
                                                             Console.WriteLine("\n");
-                                                            Console.WriteLine("Nummer bestaat niet");
+                                                            Console.WriteLine("Nummer bestaat niet.");
                                                         }
                                                     }
                                                     else
                                                     {
-                                                        Console.WriteLine("Er kunnen geen lege waardes gezocht worden");
+                                                        Console.WriteLine("Er kunnen geen lege waardes gezocht worden.");
                                                     }
                                                 }
                                                 else if (input3 == "album")
                                                 {
                                                     allAlbums.readListAlbum();
-                                                    Console.WriteLine("Kies een album om toe te voegen");
-                                                    Console.WriteLine("Type terug om terug te gaan");
+                                                    Console.WriteLine("Kies een album om toe te voegen.");
+                                                    Console.WriteLine("Type terug om terug te gaan.");
 
                                                     input4 = Console.ReadLine().ToLower();
                                                     if (input4 != null)
@@ -155,7 +174,7 @@ namespace Spotify{
                                                         if (selected_album != null)
                                                         {
                                                             selected_playlist.addAlbumToPlaylist(selected_album);
-                                                            Console.WriteLine("Album is toegevoegd");
+                                                            Console.WriteLine("Album is toegevoegd.");
                                                         }
                                                         else
                                                         {
@@ -169,7 +188,7 @@ namespace Spotify{
                                                 }
                                                 else
                                                 {
-                                                    Console.WriteLine("Kies tussen album of nummer om muziek toe te voegen");
+                                                    Console.WriteLine("Kies tussen album of nummer om een nummer toe te voegen.");
                                                 }
                                             }
                                         }
@@ -180,8 +199,8 @@ namespace Spotify{
                                             {
                                                 Console.WriteLine("\n");
                                                 selected_playlist.readList();
-                                                Console.WriteLine("Kies een nummer om te verwijderen");
-                                                Console.WriteLine("Type terug om terug te gaan");
+                                                Console.WriteLine("Kies een nummer om te verwijderen.");
+                                                Console.WriteLine("Type terug om terug te gaan.");
                                                 input3 = Console.ReadLine().ToLower();
 
                                                 Console.WriteLine("\n");
@@ -198,13 +217,13 @@ namespace Spotify{
                                                     }
                                                     else
                                                     {
-                                                        Console.WriteLine("Nummer heeft niet in afspeellijst gestaan");
+                                                        Console.WriteLine("Nummer heeft niet in afspeellijst gestaan.");
 
                                                     }
                                                 }
                                                 else
                                                 {
-                                                    Console.WriteLine("Er kunnen geen lege waardes gezocht worden");
+                                                    Console.WriteLine("Er kunnen geen lege waardes gezocht worden.");
                                                 }
                                             }
                                         }
@@ -218,48 +237,52 @@ namespace Spotify{
                                                     int i = 0;
                                                     int j = 0;
                                                     Console.WriteLine("\n");
-                                                    Console.WriteLine("Klik op spatie om de muziek te pauzeren");
+                                                    Console.WriteLine("Klik op spatie om de muziek te pauzeren.");
                                                     Console.WriteLine("Wil je de afspeellijst in random volgorde afspelen?");
-                                                    Console.WriteLine("Type ja voor random volgorde");
-                                                    Console.WriteLine("type nee om de standaard volgorde af te spelen");
-                                                    Console.WriteLine("Type terug om terug te gaan");
+                                                    Console.WriteLine("Type ja voor random volgorde.");
+                                                    Console.WriteLine("type nee om de standaard volgorde af te spelen.");
+                                                    Console.WriteLine("Type terug om terug te gaan.");
                                                     input3 = Console.ReadLine().ToLower();
                                                     Console.WriteLine("\n");
                                                     if (input3 == "ja")
                                                     {
-                                                        selected_playlist.musicRandomOrder(i, j);
+                                                        selected_playlist.musicRandomOrder();
                                                     }
                                                     else if (input3 == "nee")
                                                     {
-                                                        selected_playlist.musicNormalOrder(i, j);
+                                                        selected_playlist.musicNormalOrder();
                                                     }
                                                 }
                                                 else
                                                 {
                                                     Console.WriteLine("\n");
-;                                                    Console.WriteLine("er staan geen nummers in de afspeellijst voeg eerst nummers toe");
+                                                    ; Console.WriteLine("er staan geen nummers in de afspeellijst voeg eerst nummers toe.");
                                                     input3 = "terug";
                                                 }
                                             }
                                         }
-                                        else if (input2 == "speellijst maken")  // nieuwe speellijst maken
+                                        else if (input2 == "maken")  // nieuwe speellijst maken
                                         {
-                                            Console.WriteLine("\n");
-                                            Console.WriteLine("Geef een naam voor de speellijst");
-                                            Console.WriteLine("Type terug om geen afspeellijst te maken");
-                                            input2 = Console.ReadLine().ToLower();
-                                            Console.WriteLine("\n");
-                                            if (input2 != "terug")
+                                            input3 = "";
+                                            while (input3 != "terug")
                                             {
-                                                if (musicHolder.getSelectedPlaylist(input2) == null)
+                                                Console.WriteLine("\n");
+                                                Console.WriteLine("Geef een naam voor de speellijst.");
+                                                Console.WriteLine("Type terug om geen afspeellijst te maken.");
+                                                input3 = Console.ReadLine().ToLower();
+                                                Console.WriteLine("\n");
+                                                if (input2 != "terug")
                                                 {
-                                                    Playlist newList = new Playlist(input2);
-                                                    musicHolder.createPlaylist(newList);
-                                                    Console.WriteLine("Nieuwe speellijst is gemaakt.");
-                                                }
-                                                else
-                                                {
-                                                    Console.WriteLine("afspeellijst naam bestaat al.");
+                                                    if (musicHolder.getSelectedPlaylist(input3) == null)
+                                                    {
+                                                        Playlist newList = new Playlist(input3);
+                                                        musicHolder.createPlaylist(newList);
+                                                        Console.WriteLine("Nieuwe speellijst is gemaakt.");
+                                                    }
+                                                    else
+                                                    {
+                                                        Console.WriteLine("afspeellijst naam bestaat al.");
+                                                    }
                                                 }
                                             }
                                         }
@@ -278,6 +301,10 @@ namespace Spotify{
                                 {
                                     Console.WriteLine("speellijst bestaat niet.");
                                 }
+                            }
+                            if(input2 == "terug")
+                            {
+                                Console.WriteLine("\n");
                             }
                         }
                     }
@@ -312,187 +339,218 @@ namespace Spotify{
                 }
                 else if (input == "zoeken")
                 { // muziek zoeken
-                    while (input != "terug")
-                    {
-                        Console.WriteLine("type terug om terug te gaan.");
-                        Console.WriteLine("type zoeken om te zoeken.");
-
-                        input = Console.ReadLine().ToLower();
-                        if (input == "zoeken")
-                        {
                             input2 = "";
-                            while (input2 != "terug")
+                    while (input2 != "terug")
+                    {
+                        Console.WriteLine("Type terug om terug te gaan.");
+                        Console.WriteLine("Type nummer om een nummer te zoeken.");
+                        Console.WriteLine("Type album om een album te zoeken.");
+                        input2 = Console.ReadLine().ToLower();
+                        if (input2 == "nummer") // een nummer zoeken
+                        {
+                            int x = 0;
+                            Console.WriteLine("\n");
+                            Console.WriteLine("Zoek een nummer.");
+
+                            input2 = Console.ReadLine();
+
+                            if (input2 != null)
                             {
-                                Console.WriteLine("Type terug om terug te gaan.");
-                                Console.WriteLine("Type nummer om een nummer te zoeken.");
-                                Console.WriteLine("Type album om een album te zoeken.");
-                                input2 = Console.ReadLine();
-                                if (input2 == "nummer") // een nummer zoeken
+                                while (input3 != "terug")
                                 {
-                                    Console.WriteLine("Zoek een nummer");
-
-                                    input2 = Console.ReadLine();
-
-                                    if (input2 != null)
+                                    Music selected_Song = alleMuziek.getSongName(input2);
+                                    if (selected_Song != null)
                                     {
-                                        Music selected_Song = alleMuziek.getSongName(input2);
-                                        if (selected_Song != null)
+
+                                        Console.WriteLine("\n");
+                                        if (x == 0)
                                         {
-                                            Console.WriteLine(selected_Song.Name + " is gevonden");
-                                            Console.WriteLine("type afspelen om het nummer af te spelen");
-                                            Console.WriteLine("type toevoegen om een nummer toe te voegen aan een afspeellijst");
-                                            input = Console.ReadLine().ToLower();
-                                            if (input2 == "afspelen")   // nummer afspelen
-                                            {
-                                                selected_Song.playsong();
-                                            }
-                                            else if (input2 == "toevoegen") // nummer toevoegen aan afspeellijst
-                                            {
+                                            Console.WriteLine(selected_Song.Name + " is gevonden.");
+                                            x = 1;
+                                        }
+                                        Console.WriteLine("Type terug om terug te gaan.");
+                                        Console.WriteLine("type afspelen om het nummer af te spelen.");
+                                        Console.WriteLine("type toevoegen om een nummer toe te voegen aan een afspeellijst.");
+                                        input3 = Console.ReadLine().ToLower();
+                                        if (input3 == "afspelen")   // nummer afspelen
+                                        {
+                                            Console.WriteLine("\n");
 
-                                                musicHolder.readList();
+                                            selected_Song.playsong();
+                                        }
+                                        else if (input3 == "toevoegen") // nummer toevoegen aan afspeellijst
+                                        {
 
-                                                Console.WriteLine("Kies een afspeellijst.");
-                                                input = Console.ReadLine().ToLower();
-                                                if (musicHolder.getPlaylistName(input2) == true)
+                                            musicHolder.readList();
+                                            Console.WriteLine("\n");
+
+                                            Console.WriteLine("Kies een afspeellijst.");
+                                            input3 = Console.ReadLine().ToLower();
+                                            if (musicHolder.getPlaylistName(input3) == true)
+                                            {
+                                                Playlist selected_playlist = musicHolder.getSelectedPlaylist(input3);
+                                                Music songIsInPlaylist = selected_playlist.getSongName(input3);
+                                                if (input3 == "terug")
                                                 {
-                                                    Playlist selected_playlist = musicHolder.getSelectedPlaylist(input2);
-                                                    if (selected_Song != null)
-                                                    {
-                                                        selected_playlist.addsong(selected_Song);
-                                                        Console.WriteLine("nummer is toegevoegd.");
-                                                    }
-                                                    else
-                                                    {
-                                                        Console.WriteLine("Nummer bestaat niet.");
-                                                    }
+
+                                                }
+                                                else if (songIsInPlaylist != null)
+                                                {
+                                                    Console.WriteLine("\n");
+                                                    Console.WriteLine("nummer staat al in afspeellijst.");
+                                                    Console.WriteLine("\n");
+
+                                                }
+                                                else if (selected_Song != null && songIsInPlaylist == null)
+                                                {
+                                                    Console.WriteLine("\n");
+                                                    selected_playlist.addsong(selected_Song);
+                                                    Console.WriteLine("Nummer is toegevoegd aan afspeellijst.");
+                                                    Console.WriteLine("\n");
+
                                                 }
                                                 else
                                                 {
                                                     Console.WriteLine("\n");
-                                                    Console.WriteLine("de gekozen afspeellijst bestaat niet.");
+                                                    Console.WriteLine("Nummer bestaat niet.");
                                                     Console.WriteLine("\n");
+
                                                 }
                                             }
                                             else
                                             {
                                                 Console.WriteLine("\n");
-                                                Console.WriteLine("Kies tussen toevoegen of afspelen.");
+                                                Console.WriteLine("de gekozen afspeellijst bestaat niet.");
                                                 Console.WriteLine("\n");
                                             }
-
                                         }
                                         else
                                         {
                                             Console.WriteLine("\n");
-                                            Console.WriteLine("Nummer bestaat niet.");
+                                            Console.WriteLine("Kies tussen toevoegen of afspelen.");
                                             Console.WriteLine("\n");
                                         }
+
                                     }
                                     else
                                     {
                                         Console.WriteLine("\n");
-                                        Console.WriteLine("kan geen lege waardes zoeken.");
-                                        Console.WriteLine("\n");
-                                    }
-                                }
-                                else if(input2 == "album")  // album zoeken
-                                {
-                                    Console.WriteLine("Zoek een album");
-
-                                    input2 = Console.ReadLine();
-
-                                    if (input2 != null)
-                                    {
-                                        Album selected_Album = allAlbums.getAlbumName(input2);
-                                        if (selected_Album != null)
-                                        {                           
-                                            Console.WriteLine(selected_Album.Name + " is gevonden");
-                                            Console.WriteLine("type afspelen om het nummer af te spelen");
-                                            Console.WriteLine("type toevoegen om een nummer toe te voegen aan een afspeellijst");
-                                            input = Console.ReadLine().ToLower();
-                                            if (input2 == "afspelen")
-                                            {                           // album afspelen
-                                                input3 = "";
-                                                while(input3 != "terug")
-                                                {
-                                                    Console.WriteLine("Type ja om de muziek op normale volgorde af te spelen.");
-                                                    Console.WriteLine("Type nee om de muziek op random volgorde af te spelen.");
-                                                    Console.WriteLine("Type terug om terug te gaan.");
-                                                    input3 = Console.ReadLine().ToLower();
-                                                    if(input3 == "ja")
-                                                    {                       // normale volgorde afspelen
-                                                        selected_Album.playAlbum();
-                                                    }
-                                                    else if(input3 == "nee")
-                                                    {                   // random volgorde afspelen
-                                                        selected_Album.albumRandomOrder();
-                                                    }
-                                                    else if(input3 != "terug")
-                                                    {                   // terug gaan
-                                                        Console.WriteLine("Kies tussen ja , nee of terug.");
-                                                    }
-                                                }
-
-
-                                            }
-                                            else if (input2 == "toevoegen")
-                                            {       //album toevoegen aan afspeellijst
-
-                                                musicHolder.readList();
-
-                                                Console.WriteLine("Kies een afspeellijst.");
-                                                input = Console.ReadLine().ToLower();
-                                                if (musicHolder.getPlaylistName(input2) == true)
-                                                {
-                                                    Playlist selected_playlist = musicHolder.getSelectedPlaylist(input2);
-                                                    if (selected_Album != null)
-                                                    {
-                                                        selected_playlist.addAlbumToPlaylist(selected_Album);
-                                                        Console.WriteLine("Album is toegevoegd.");
-                                                    }
-                                                    else
-                                                    {
-                                                        Console.WriteLine("Album bestaat niet.");
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    Console.WriteLine("\n");
-                                                    Console.WriteLine("de gekozen afspeellijst bestaat niet.");
-                                                    Console.WriteLine("\n");
-                                                }
-                                            }
-                                            else
-                                            {
-                                                Console.WriteLine("\n");
-                                                Console.WriteLine("Kies tussen toevoegen of afspelen.");
-                                                Console.WriteLine("\n");
-                                            }
-
-                                        }
-                                        else
-                                        {
-                                            Console.WriteLine("\n");
-                                            Console.WriteLine("Nummer bestaat niet.");
-                                            Console.WriteLine("\n");
-                                        }
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("\n");
-                                        Console.WriteLine("kan geen lege waardes zoeken.");
+                                        Console.WriteLine("Nummer bestaat niet.");
                                         Console.WriteLine("\n");
                                     }
                                 }
                             }
+                            else
+                            {
+                                Console.WriteLine("\n");
+                                Console.WriteLine("kan geen lege waardes zoeken.");
+                                Console.WriteLine("\n");
+                            }
                         }
-                        else if (input != "terug")
+                        else if (input2 == "album")  // album zoeken
                         {
+                            int x = 0;
                             Console.WriteLine("\n");
-                            Console.WriteLine("Type zoeken of terug.");
-                            Console.WriteLine("\n");
-                        }
+                            Console.WriteLine("Zoek een album.");
 
+                            input2 = Console.ReadLine().ToLower();
+
+                            if (input2 != null)
+                            {
+                                while (input4 != "terug")
+                                {
+
+                                    Album selected_Album = allAlbums.getAlbumName(input2);
+                                    if (selected_Album != null)
+                                    {
+                                        Console.WriteLine("\n");
+                                        Console.WriteLine("Type terug om terug te gaan");
+                                        if (x == 0)
+                                        {
+                                            Console.WriteLine(selected_Album.Name + " is gevonden.");
+                                            x = 1;
+                                        }
+                                        Console.WriteLine("type afspelen om het album af te spelen.");
+                                        Console.WriteLine("type toevoegen om een album toe te voegen aan een afspeellijst.");
+                                        Console.WriteLine("\n");
+                                        input4 = Console.ReadLine().ToLower();
+                                        if (input4 == "afspelen")
+                                        {                           // album afspelen
+                                            input3 = "";
+                                            while (input3 != "terug")
+                                            {
+                                                Console.WriteLine("Type ja om de muziek op normale volgorde af te spelen.");
+                                                Console.WriteLine("Type nee om de muziek op random volgorde af te spelen.");
+                                                Console.WriteLine("Type terug om terug te gaan.");
+                                                input3 = Console.ReadLine().ToLower();
+                                                if (input3 == "ja")
+                                                {                       // normale volgorde afspelen
+                                                    selected_Album.playAlbum();
+                                                }
+                                                else if (input3 == "nee")
+                                                {                   // random volgorde afspelen
+                                                    selected_Album.albumRandomOrder();
+                                                }
+                                                else if (input3 != "terug")
+                                                {                   // terug gaan
+                                                    Console.WriteLine("Kies tussen ja , nee of terug.");
+                                                }
+                                            }
+
+
+                                        }
+                                        else if (input4 == "toevoegen")
+                                        {       //album toevoegen aan afspeellijst
+                                            Console.WriteLine("\n");
+                                            musicHolder.readList();
+                                            Console.WriteLine("Kies een afspeellijst.");
+                                            Console.WriteLine("\n");
+
+                                            input4 = Console.ReadLine().ToLower();
+                                            if (musicHolder.getPlaylistName(input4) == true)
+                                            {
+                                                Playlist selected_playlist = musicHolder.getSelectedPlaylist(input2);
+                                                if (selected_Album != null)
+                                                {
+                                                    selected_playlist.addAlbumToPlaylist(selected_Album);
+                                                    Console.WriteLine("Album is toegevoegd.");
+                                                }
+                                                else
+                                                {
+                                                    Console.WriteLine("Album bestaat niet.");
+                                                }
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("\n");
+                                                Console.WriteLine("de gekozen afspeellijst bestaat niet.");
+                                                Console.WriteLine("\n");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("\n");
+                                            Console.WriteLine("Kies tussen toevoegen of afspelen.");
+                                            Console.WriteLine("\n");
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("\n");
+                                        Console.WriteLine("Nummer bestaat niet.");
+                                        Console.WriteLine("\n");
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("\n");
+                                Console.WriteLine("kan geen lege waardes zoeken.");
+                                Console.WriteLine("\n");
+                            }
+                        }
+                        Console.WriteLine("\n");
                     }
                 }
 
@@ -507,224 +565,263 @@ namespace Spotify{
                         Console.WriteLine("Type vrienden om je vriendenlijst in te zien.");
                         Console.WriteLine("Type verzoeken om je vriend verzoeken in te zien.");
                         input = Console.ReadLine().ToLower();
+                        Console.WriteLine("\n");
                         if (input == "verzoeken")
                         {       // vrienden verzoeken inzien
                             input2 = "";
                             while (input2 != "terug")
                             {
                                 friendlist.vriendVerzoeken();
-                                Console.WriteLine("Type een naam om toe te voegen of verwijderen");
+                                Console.WriteLine("Type een naam om toe te voegen of verwijderen.");
                                 Console.WriteLine("Type terug om terug te gaan.");
                                 input2 = Console.ReadLine().ToLower();
+                                Console.WriteLine("\n");
                                 if (input2 != null)
                                 {
                                     Person selectedPerson = allePersonen.searchFriends(input2);
-                                    Console.WriteLine("Type verwijderen om de persoon te weigeren");
-                                    Console.WriteLine("Type toevoegen om de persoon toe te voegen aan je vriendenlijst");
-                                    Console.WriteLine("type terug om terug te gaan");
+                                    Console.WriteLine("Type verwijderen om de persoon te weigeren.");
+                                    Console.WriteLine("Type toevoegen om de persoon toe te voegen aan je vriendenlijst.");
+                                    Console.WriteLine("type terug om terug te gaan.");
                                     input2 = Console.ReadLine().ToLower();
+                                    Console.WriteLine("\n");
 
                                     if (input2 == "verwijderen")
                                     {                           // verzoek wijgeren
                                         friendlist.verwijderVerzoeken(selectedPerson);
-                                        Console.WriteLine("Verzoek is verwijderd");
+                                        Console.WriteLine("Verzoek is verwijderd.");
+                                        Console.WriteLine("\n");
 
                                     }
                                     else if (input2 == "toevoegen")
                                     {                           // verzoek acccepteren
                                         friendlist.verwijderVerzoeken(selectedPerson);
                                         friendlist.addFriend(selectedPerson);
-                                        Console.WriteLine("Vriend is toegevoegd aan vriendenlijst");
+                                        Console.WriteLine("Vriend is toegevoegd aan vriendenlijst.");
+                                        Console.WriteLine("\n");
                                     }
                                     else if (input2 != "terug")
                                     {
-                                        Console.WriteLine("Kies verwijderen , toevoegen of terug");
+                                        Console.WriteLine("Kies verwijderen , toevoegen of terug.");
+                                        Console.WriteLine("\n");
                                     }
                                 }
                                 else if (input2 != "terug")
                                 {
                                     Console.WriteLine("Kies een persoon of kies om terug te gaan.");
+                                    Console.WriteLine("\n");
                                 }
                             }
                         }
                         else if (input == "vrienden")
                         {       // vriendenlijst inzien
+                            input2 = "";
                             while (input2 != "terug")
                             {
+                                name.Friendslist.vriendenLijst();
                                 Console.WriteLine("Selecteer een vriend.");
                                 Console.WriteLine("Type terug om terug te gaan.");
-                                Person selectedPerson = friendlist.searchFriends(input2);
                                 input2 = Console.ReadLine().ToLower();
-                                string person = input2;
-                                if (selectedPerson != null && input2 != "terug")
+                                Console.WriteLine("\n");
+
+                                if (input2 != "terug")
                                 {
-                                    input3 = "";
-                                    while (input3 != "terug")
+                                    Person selectedPerson = friendlist.searchFriends(input2);
+
+
+                                    string person = input2;
+                                    if (selectedPerson != null && input2 != "terug")
                                     {
-                                        Console.WriteLine("Type terug om terug te gaan");
-                                        Console.WriteLine("Type speellijst om zijn speellijsten in te zien");
-                                        Console.WriteLine("Type verwijderen om de vriend te verwijderen");
-                                        input3 = Console.ReadLine().ToLower();
-                                        if (input3 == "verwijderen")
-                                        {                           // vriend verwijderen uit vriendenlijst
-                                            Console.WriteLine("Weet je zeker dat je deze vriend wilt verwijderen?");
-                                            Console.WriteLine("Type Ja om de vriend te verwijderen.");
-                                            Console.WriteLine("Type nee om de vriend te houden.");
+                                        input3 = "";
+                                        while (input3 != "terug")
+                                        {
+                                            Console.WriteLine("Type terug om terug te gaan.");
+                                            Console.WriteLine("Type speellijst om zijn speellijsten in te zien.");
+                                            Console.WriteLine("Type verwijderen om de vriend te verwijderen.");
                                             input3 = Console.ReadLine().ToLower();
-                                            if (input3 == "ja")
-                                            {
-                                                friendlist.removeFriend(person);
-                                                input3 = "terug";
-                                            }
-                                            else
-                                            {
-                                                Console.WriteLine("Vriend is niet verwijderd");
-                                            }
-                                        }
-                                        else if (input3 == "speellijst")
-                                        {                           // afspeellijst van vrienden inzien
-                                            input4 = "";
-                                            while (input4 != "terug")
-                                            {
-                                                Console.WriteLine("Type terug om terug te gaan.");
-                                                Console.WriteLine("Type inzien om de afspeellijsten in te zien.");
-                                                Console.WriteLine("Type afspelen om de afspeellijst af te spelen.");
-                                                Console.WriteLine("Type kopieren om de afspeellijst te kopiëren.");
-
-                                                input4 = Console.ReadLine().ToLower();
-
-                                                if (input4 == "inzien")
+                                            Console.WriteLine("\n");
+                                            if (input3 == "verwijderen")
+                                            {                           // vriend verwijderen uit vriendenlijst
+                                                Console.WriteLine("Weet je zeker dat je deze vriend wilt verwijderen?");
+                                                Console.WriteLine("Type Ja om de vriend te verwijderen.");
+                                                Console.WriteLine("Type nee om de vriend te houden.");
+                                                input3 = Console.ReadLine().ToLower();
+                                                Console.WriteLine("\n");
+                                                if (input3 == "ja")
                                                 {
-                                                    Console.WriteLine(selectedPerson.Playlistlibraries);
+                                                    friendlist.removeFriend(person);
+                                                    input3 = "terug";
                                                 }
-                                                else if (input4 == "afspelen")
-                                                {                       // muziek afspelen
-                                                    while (input5 != "terug")
-                                                    {
-                                                        Console.WriteLine(selectedPerson.Playlistlibraries);
-                                                        Console.WriteLine("Type terug om terug te gaan");
-                                                        Console.WriteLine("Kies een afspeellijst");
-                                                        input5 = Console.ReadLine().ToLower();
-                                                        Library selectedLibrary = selectedPerson.Playlistlibraries;
-                                                        Playlist selectedPlaylist = selectedLibrary.getSelectedPlaylist(input5);
-                                                        if (selectedPlaylist != null)
-                                                        {
-                                                            input6 = "";
-                                                            while (input6 != "terug")
-                                                            {
+                                                else
+                                                {
+                                                    Console.WriteLine("Vriend is niet verwijderd.");
+                                                    Console.WriteLine("\n");
+                                                }
+                                            }
+                                            else if (input3 == "speellijst")
+                                            {                           // afspeellijst van vrienden inzien
+                                                input4 = "";
+                                                while (input4 != "terug")
+                                                {
+                                                    Console.WriteLine("Type terug om terug te gaan.");
+                                                    Console.WriteLine("Type inzien om de afspeellijsten in te zien.");
+                                                    Console.WriteLine("Type afspelen om de afspeellijst af te spelen.");
+                                                    Console.WriteLine("Type kopieren om de afspeellijst te kopiëren.");
 
-                                                                int i = 0;
-                                                                int j = 0;
-                                                                Console.WriteLine("Type terug om terug te gaan");
-                                                                Console.WriteLine("Klik op spatie om de muziek te pauzeren");
-                                                                Console.WriteLine("Wil je de afspeellijst in random volgorde afspelen?");
-                                                                Console.WriteLine("Type ja voor random volgorde");
-                                                                Console.WriteLine("type nee om de standaard volgorde af te spelen");
-                                                                input6 = Console.ReadLine().ToLower();
-                                                                if (input6 == "ja")
-                                                                {                   // muziek afspelen in random volgorde
-                                                                    selectedPlaylist.musicRandomOrder(i, j);
-                                                                }
-                                                                else if (input6 == "nee")
-                                                                {                   // muziek in normale volgorde afspelen
-                                                                    selectedPlaylist.musicNormalOrder(i, j);
-                                                                }
-                                                                else if (input6 != "terug")
+                                                    input4 = Console.ReadLine().ToLower();
+                                                    Console.WriteLine("\n");
+                                                    if (input4 == "inzien")
+                                                    {
+                                                        selectedPerson.Playlistlibraries.readList();
+                                                    }
+                                                    else if (input4 == "afspelen")
+                                                    {                       // muziek afspelen
+                                                        while (input5 != "terug")
+                                                        {
+                                                            Console.WriteLine(selectedPerson.Playlistlibraries);
+                                                            Console.WriteLine("Type terug om terug te gaan.");
+                                                            Console.WriteLine("Kies een afspeellijst.");
+                                                            input5 = Console.ReadLine().ToLower();
+                                                            Library selectedLibrary = selectedPerson.Playlistlibraries;
+                                                            Playlist selectedPlaylist = selectedLibrary.getSelectedPlaylist(input5);
+                                                            Console.WriteLine("\n");
+                                                            if (selectedPlaylist != null)
+                                                            {
+                                                                input6 = "";
+                                                                while (input6 != "terug")
                                                                 {
-                                                                    Console.WriteLine("Type ja ,nee of terug");
+                                                                    Console.WriteLine("Type terug om terug te gaan.");
+                                                                    Console.WriteLine("Klik op spatie om de muziek te pauzeren.");
+                                                                    Console.WriteLine("Wil je de afspeellijst in random volgorde afspelen?.");
+                                                                    Console.WriteLine("Type ja voor random volgorde.");
+                                                                    Console.WriteLine("type nee om de standaard volgorde af te spelen.");
+                                                                    input6 = Console.ReadLine().ToLower();
+                                                                    Console.WriteLine("\n");
+                                                                    if (input6 == "ja")
+                                                                    {                   // muziek afspelen in random volgorde
+                                                                        selectedPlaylist.musicRandomOrder();
+                                                                    }
+                                                                    else if (input6 == "nee")
+                                                                    {                   // muziek in normale volgorde afspelen
+                                                                        selectedPlaylist.musicNormalOrder();
+                                                                    }
+                                                                    else if (input6 != "terug")
+                                                                    {
+                                                                        Console.WriteLine("Type ja ,nee of terug.");
+                                                                        Console.WriteLine("\n");
+                                                                    }
                                                                 }
                                                             }
+                                                            else if (input5 != "terug")
+                                                            {
+                                                                Console.WriteLine("Deze afspeellijst bestaat niet.");
+                                                                Console.WriteLine("\n");
+                                                            }
                                                         }
-                                                        else if (input5 != "terug")
+                                                    }
+                                                    else if (input4 == "kopieren")
+                                                    {                               // afspeellijst kopieren
+                                                        selectedPerson.Playlistlibraries.readList();
+                                                        Console.WriteLine("Kies een afspeellijst.");
+                                                        input4 = Console.ReadLine().ToLower();
+                                                        Library selectedLibrary = selectedPerson.Playlistlibraries;
+                                                        Playlist selectedPlaylist = selectedLibrary.getSelectedPlaylist(input4);
+                                                        Console.WriteLine("\n");
+                                                        if (selectedPlaylist != null)
+                                                        {
+                                                            musicHolder.createPlaylist(selectedPlaylist);
+                                                            Console.WriteLine("afspeellijst is gekopiëerd.");
+                                                            Console.WriteLine("\n");
+                                                        }
+                                                        else
                                                         {
                                                             Console.WriteLine("Deze afspeellijst bestaat niet.");
+                                                            Console.WriteLine("\n");
                                                         }
                                                     }
-                                                }
-                                                else if (input4 == "kopieren")
-                                                {                               // afspeellijst kopieren
-                                                    Console.WriteLine(selectedPerson.Playlistlibraries);
-                                                    Console.WriteLine("Kies een afspeellijst");
-                                                    input4 = Console.ReadLine().ToLower();
-                                                    Library selectedLibrary = selectedPerson.Playlistlibraries;
-                                                    Playlist selectedPlaylist = selectedLibrary.getSelectedPlaylist(input2);
-                                                    if (selectedPlaylist != null)
+                                                    else if (input4 != "terug")
                                                     {
-                                                        musicHolder.createPlaylist(selectedPlaylist);
+                                                        Console.WriteLine("Kies tussen kopieren ,afspelen of terug.");
+                                                        Console.WriteLine("\n");
                                                     }
-                                                    else
-                                                    {
-                                                        Console.WriteLine("Deze afspeellijst bestaat niet.");
-                                                    }
-                                                }
-                                                else if (input4 != "terug")
-                                                {
-                                                    Console.WriteLine("Kies tussen kopieren ,afspelen of terug.");
                                                 }
                                             }
-                                        }
-                                        else if (input3 != "terug")
-                                        {
-                                            Console.WriteLine("Kies tussen speellijst ,verwijderen of terug.");
+                                            else if (input3 != "terug")
+                                            {
+                                                Console.WriteLine("Kies tussen speellijst ,verwijderen of terug.");
+                                                Console.WriteLine("\n");
 
+                                            }
                                         }
                                     }
                                 }
                                 else if (input != "terug")
                                 {
                                     Console.WriteLine("De gekozen persoon staat niet in je vrienden lijst.");
+                                    Console.WriteLine("\n");
                                 }
                             }
                         }
 
-
-
                         else if (input == "zoeken")
                         {
-                            while (input != "terug")
+                            input2 = "";
+                            while (input2 != "terug")
                             {
                                 Console.WriteLine("Type terug om terug te gaan.");
                                 Console.WriteLine("Zoek een persoon op.");
-                                input = Console.ReadLine().ToLower();
-                                if (input != null)
+                                input2 = Console.ReadLine().ToLower();
+                                Console.WriteLine("\n");
+                                if (input2 != null)
                                 {                   // personen zoeken
-                                    Person selectedPerson = allePersonen.searchFriends(input);
+                                    Person selectedPerson = allePersonen.searchFriends(input2);
                                     if (selectedPerson != null)
                                     {
                                         Console.WriteLine("Wil je een vriendschapsverzoek versturen?");
-                                        Console.WriteLine("Type ja om een verzoek te sturen");
-                                        Console.WriteLine("Type nee om geen verzoek te sturen");
-                                        input = Console.ReadLine().ToLower();
+                                        Console.WriteLine("Type ja om een verzoek te sturen.");
+                                        Console.WriteLine("Type nee om geen verzoek te sturen.");
+                                        Console.WriteLine("\n");
+                                        input2 = Console.ReadLine().ToLower();
                                         if (input == "ja")
                                         {                   // vriendschapsverzoek sturen
                                             Friendlist selectedFriendlist = selectedPerson.Friendslist;
-                                            selectedFriendlist.addFriend(name);
+                                            selectedFriendlist.stuurVerzoek(name);
+                                            Console.WriteLine("Verzoek is gestuurd.");
+                                            Console.WriteLine("\n");
                                         }
-                                        else
+                                        else if(input != "terug")
                                         {
-                                            Console.WriteLine("Verzoek is niet gestuurd");
+                                            Console.WriteLine("Verzoek is niet gestuurd.");
+                                            Console.WriteLine("\n");
                                         }
                                     }
-                                    else if (input != "terug")
+                                    else if (input2 != "terug")
                                     {
-                                        Console.WriteLine("Persoon is niet gevonden");
+                                        Console.WriteLine("Persoon is niet gevonden.");
+                                        Console.WriteLine("\n");
                                     }
                                 }
                                 else
                                 {
                                     Console.WriteLine("Er kunnen geen lege waardes gezocht worden.");
+                                    Console.WriteLine("\n");
                                 }
                             }
                         }
-                        else
+                        else if(input != "terug")
                         {
                             Console.WriteLine("Kies vrienden , zoeken of verzoeken.");
+                            Console.WriteLine("\n");
+                        }
+                        else if (input == "terug")
+                        {
+                            Console.WriteLine("\n");
                         }
                     }
                 }
                 else
                 {
                     Console.WriteLine("Type speellijst ,zoeken of vriendenlijst.");
+                    Console.WriteLine("\n");
                 }
             }
         }

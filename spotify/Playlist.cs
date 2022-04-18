@@ -43,8 +43,10 @@ namespace playlist
             return null;
         }
 
-        public void musicRandomOrder(int i , int j) // muziek in random volgorde afspelen
+        public void musicRandomOrder() // muziek in random volgorde afspelen
         {
+            int i = 0;
+            int j = 0;
 
             Random rnd = new Random();
 
@@ -91,8 +93,10 @@ namespace playlist
             } while (Console.ReadKey(true).Key != ConsoleKey.Escape);   // muziek stoppen
         }
 
-        public void musicNormalOrder(int i, int j)
+        public void musicNormalOrder()
         {
+            int i = 0;
+            int j = 0;
 
             Music selected_Song = this.getSong(i);
             Console.WriteLine(selected_Song.Name);

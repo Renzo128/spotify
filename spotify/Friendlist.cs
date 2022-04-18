@@ -20,7 +20,7 @@ namespace friendlist
         {
             friends.Add(person);    
         }
-        public void removeFriend(string input)  // persoon verwijderen uit friends list
+        public string removeFriend(string input)  // persoon verwijderen uit friends list
         {
             int found = 0;
             foreach (var item in this.friends)
@@ -30,13 +30,18 @@ namespace friendlist
                     friends.Remove(item);   // vriend is verwijderd uit friends list
                     Console.WriteLine("Vriend is verwijderd");
                     found++;
+                    return null;
                 } 
 
             }
             if (found == 0)
             {   
                 Console.WriteLine("Persoon staat niet in je vriendenlijst");    // vriend is niet gevonden
+                return null;
+
             }
+            return null;
+
 
         }
 
@@ -46,11 +51,11 @@ namespace friendlist
             {
                 if (item.Name == input)
                 {
-                    Console.WriteLine("Vriend is gevonden");    // persoon bestaat
+                    Console.WriteLine("Persoon is gevonden.");    // persoon bestaat
                     return item;
                 }
             }
-            Console.WriteLine("Persoon is niet gevonden");  // persoon bestaat niet
+            Console.WriteLine("Persoon is niet gevonden.");  // persoon bestaat niet
             return null;
         }
         public void vriendVerzoeken()   // alle vriendverzoeken inzien
@@ -58,18 +63,30 @@ namespace friendlist
             foreach(var item in this.Verzoeken)
             {
                 Console.Write(item.Name);
+                Console.WriteLine("\n");
             }
         }
 
-        public void verwijderVerzoeken(Person person)   // vriendverzoeken afwijzen
+        public void vriendenLijst()   // alle vriendverzoeken inzien
+        {
+            foreach (var item in this.friends)
+            {
+                Console.Write(item.Name);
+                Console.WriteLine("\n");
+            }
+        }
+
+        public string verwijderVerzoeken(Person person)   // vriendverzoeken afwijzen
         {
             foreach (var item in this.Verzoeken)
             {
                 if(person == item) 
                 {
                     Verzoeken.Remove(item);
+                    return null;
                 }
             }
+            return null;
         }
 
         public void stuurVerzoek(Person person) // vriend verzoek sturen
