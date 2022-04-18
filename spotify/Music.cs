@@ -23,7 +23,7 @@ namespace music
             this.genre = genre;
         }
 
-        public void playsong()
+        public void playsong()  // muziek afspelen
         {
             int j = 0;
             string input;
@@ -56,12 +56,9 @@ namespace music
                     Console.WriteLine("Klik op escape om terug te gaan");
                     if (Console.ReadKey(true).Key == ConsoleKey.Spacebar)
                     {
-                        Console.WriteLine("Klik op spatie om het nummer door te spelen");
+                        Console.WriteLine("Klik op spatie om het nummer door te spelen");   // muziek pauzeren
                     }
-
-
-
-                } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+                } while (Console.ReadKey(true).Key != ConsoleKey.Escape);   // muziek stoppen
         }
 
     }

@@ -12,7 +12,7 @@ namespace person
         private string name;
         private Library playlistlibrary;
         private Friendlist friendlist;
-            public string Name
+            public string Name  // getter setters voor person
         {
             get { return name; }
             set { name = value; }

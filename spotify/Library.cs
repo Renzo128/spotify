@@ -15,7 +15,7 @@ namespace library
         private int amountOfPlaylist;
         private Person name;
 
-        public Library(Person person)
+        public Library(Person person)   // object maken
         {
             this.name = person;
         }
@@ -25,15 +25,11 @@ namespace library
             this.amountOfPlaylist++;
             this.name = person;
         }
-        public List<Playlist> getAllPlaylists()
+        public List<Playlist> getAllPlaylists() // alle playlists ophalen
         {
             return library;
         }
-        public void playPlaylist(Playlist playlist)
-        {
-
-        }
-        public bool getPlaylistName(string input)
+        public bool getPlaylistName(string input)   // playlist ophalen
         {
             foreach (var item in this.library)
             {
@@ -45,25 +41,25 @@ namespace library
             }
             return false;
         }
-        public void deletePlaylist(Playlist playlist)
+        public void deletePlaylist(Playlist playlist)   // playlist verwijderen
         {
             this.library.Remove(playlist);
         }
-        public void createPlaylist(Playlist playlist)
+        public void createPlaylist(Playlist playlist)   // playlist toevoegen aan playlists
         {
             this.library.Add(playlist);
             this.amountOfPlaylist++;
 
         }
 
-        public void readList()
+        public void readList()  // alle playlist namen displayen
         {
             foreach (var item in this.library)
             {
                 Console.WriteLine(item.Playlistname);
             }
         }
-        public Playlist getSelectedPlaylist(string input)
+        public Playlist getSelectedPlaylist(string input)   // playlist selecteren
         {
             foreach (var item in this.library)
             {
@@ -76,7 +72,7 @@ namespace library
             return null;
         }
 
-        public Album getAlbumName(string input)
+        public Album getAlbumName(string input) // album selecteren
         {
 
             foreach (var item in this.albums)
@@ -90,7 +86,7 @@ namespace library
             return null;
         }
 
-        public void readListAlbum()
+        public void readListAlbum() // alle albums displayen
         {
             foreach (var item in this.albums)
             {
@@ -98,12 +94,9 @@ namespace library
             }
         }
 
-        public void addAlbum(Album album)
+        public void addAlbum(Album album)   // album toevoegen aan album list
         {
             albums.Add(album);
         }
-
-
-
     }
 }

@@ -14,22 +14,22 @@ namespace playlist
 
 
 
-        public Playlist(string playlistname)
+        public Playlist(string playlistname)    // object aanmaken
         {
             this.playlistname = playlistname;
         }
 
         public string Playlistname { get { return playlistname; } }
         public List<Music> Songlist { get { return songlist; } }
-        public void addsong(Music music)
+        public void addsong(Music music)    // muziek toevoegen aan list
         {
             songlist.Add(music);
         }
-        public void removeSong(Music music)
+        public void removeSong(Music music) // muziek verwijderen aan list
         {
             songlist.Remove(music);
         }
-        public Music getSongName(string input)
+        public Music getSongName(string input)  // muziek zoeken
         {
 
             foreach (var item in this.songlist)
@@ -43,7 +43,7 @@ namespace playlist
             return null;
         }
 
-        public void musicRandomOrder(int i , int j)
+        public void musicRandomOrder(int i , int j) // muziek in random volgorde afspelen
         {
 
             Random rnd = new Random();
@@ -80,7 +80,7 @@ namespace playlist
                     }
                 }
 
-                Console.WriteLine("Klik op escape om terug te gaan");
+                Console.WriteLine("Klik op escape om terug te gaan");   // muziek pauzeren
                 if (Console.ReadKey(true).Key == ConsoleKey.Spacebar)
                 {
                     Console.WriteLine("Klik op spatie om het nummer door te spelen");
@@ -88,7 +88,7 @@ namespace playlist
 
 
 
-            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);   // muziek stoppen
         }
 
         public void musicNormalOrder(int i, int j)
@@ -122,23 +122,23 @@ namespace playlist
                 }
 
                 Console.WriteLine("Klik op escape om terug te gaan");
-                if (Console.ReadKey(true).Key == ConsoleKey.Spacebar)
+                if (Console.ReadKey(true).Key == ConsoleKey.Spacebar)   // muziek pauzeren
                 {
                     Console.WriteLine("Klik op spatie om het nummer door te spelen");
                 }
 
 
 
-            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);   // muziek afsluiten
         }
 
-        public Music getSong(int i)
+        public Music getSong(int i) // muziek uit list halen
         {
             Console.WriteLine(this.Songlist[i].Name);
             return this.songlist[i];
 
         }
-        public void readList()
+        public void readList()  // alle nummers uit de list halen
         {
             foreach (var item in this.songlist)
             {
@@ -146,7 +146,7 @@ namespace playlist
             }
         }
 
-        public void addAlbumToPlaylist(Album album)
+        public void addAlbumToPlaylist(Album album) // album toevoegen aan list
         {
             foreach (var item in album.Songs)
                 songlist.Add(item);

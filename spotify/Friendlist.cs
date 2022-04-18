@@ -16,44 +16,44 @@ namespace friendlist
         {
 
         }
-        public void addFriend(Person person)
+        public void addFriend(Person person)    // persoon toevoegen aan friends list
         {
             friends.Add(person);    
         }
-        public void removeFriend(string input)
+        public void removeFriend(string input)  // persoon verwijderen uit friends list
         {
             int found = 0;
             foreach (var item in this.friends)
             {
                 if (item.Name == input)
                 {
-                    friends.Remove(item);
+                    friends.Remove(item);   // vriend is verwijderd uit friends list
                     Console.WriteLine("Vriend is verwijderd");
                     found++;
                 } 
 
             }
             if (found == 0)
-            {
-                Console.WriteLine("Persoon staat niet in je vriendenlijst");
+            {   
+                Console.WriteLine("Persoon staat niet in je vriendenlijst");    // vriend is niet gevonden
             }
 
         }
 
-        public Person searchFriends(string input)
+        public Person searchFriends(string input) // zoeken of persoon bestaat
         {
-            foreach(var item in this.friends)
+            foreach(var item in this.friends)  
             {
                 if (item.Name == input)
                 {
-                    Console.WriteLine("Vriend is gevonden");
+                    Console.WriteLine("Vriend is gevonden");    // persoon bestaat
                     return item;
                 }
             }
-            Console.WriteLine("Persoon is niet gevonden");
+            Console.WriteLine("Persoon is niet gevonden");  // persoon bestaat niet
             return null;
         }
-        public void vriendVerzoeken()
+        public void vriendVerzoeken()   // alle vriendverzoeken inzien
         {
             foreach(var item in this.Verzoeken)
             {
@@ -61,7 +61,7 @@ namespace friendlist
             }
         }
 
-        public void verwijderVerzoeken(Person person)
+        public void verwijderVerzoeken(Person person)   // vriendverzoeken afwijzen
         {
             foreach (var item in this.Verzoeken)
             {
@@ -72,7 +72,7 @@ namespace friendlist
             }
         }
 
-        public void stuurVerzoek(Person person)
+        public void stuurVerzoek(Person person) // vriend verzoek sturen
         {
             Verzoeken.Add(person);
         }
