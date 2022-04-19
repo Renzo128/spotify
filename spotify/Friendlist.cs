@@ -12,6 +12,7 @@ namespace friendlist
         private List<Person> friends = new List<Person>();
         private List<Person> Verzoeken = new List<Person>();
 
+
         public Friendlist()
         {
 
@@ -54,8 +55,7 @@ namespace friendlist
                     Console.WriteLine("Persoon is gevonden.");    // persoon bestaat
                     return item;
                 }
-            }
-            Console.WriteLine("Persoon is niet gevonden.");  // persoon bestaat niet
+            }  // persoon bestaat niet
             return null;
         }
         public void vriendVerzoeken()   // alle vriendverzoeken inzien
@@ -94,7 +94,16 @@ namespace friendlist
             Verzoeken.Add(person);
         }
 
+        public Person getVerzoek(string input)
+        {
+            foreach (var item in this.Verzoeken)
+            {
+                if (input == item.Name)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
     }
-
-
 }
