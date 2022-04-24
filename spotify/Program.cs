@@ -276,7 +276,7 @@ namespace Spotify{
                                                     {
                                                         selected_playlist.musicNormalOrder();
                                                     }
-                                                    else
+                                                    else if(input3 != "terug")
                                                     {
                                                         Console.WriteLine("Type ja , nee of terug.");
                                                     }
@@ -327,6 +327,10 @@ namespace Spotify{
                                             input2 = "terug";
                                             Console.WriteLine("afspeellijst is verwijderd.");
                                             Console.WriteLine("\n");
+                                            if(musicHolder.getAllPlaylists().Count == 0)
+                                            {
+                                                input5 = "terug";
+                                            }
 
                                         }
                                         else if (input2 != "terug")
