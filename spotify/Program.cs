@@ -12,7 +12,7 @@ namespace Spotify{
     // Main Method
         static public void Main(String[] args)
         {
-            Person admin = new Person("Admin");     // objecten aanmaken
+            Person admin = new Person("Admin");     // test objecten / data aanmaken
             Music nummer1 = new Music("song1",5,"name","genre1");
             Music nummer2 = new Music("song2", 10, "name2", "genre2");
             Music nummer3 = new Music("song3", 3, "name3", "genre3");
@@ -45,12 +45,6 @@ namespace Spotify{
             musicHolder.createPlaylist(testList);
             name.Playlistlibraries = musicHolder;
             name.Friendslist = friendlist;
-            string input = "start";
-            string input2 = "start";
-            string input3 = "start";
-            string input4 = "start";
-            string input5 = "start";
-            string input6 = "start";
 
 
             Person test1 = new Person("test1");
@@ -75,6 +69,15 @@ namespace Spotify{
             name.Friendslist.addFriend(test1);
             name.Friendslist.stuurVerzoek(test2);
             name.Friendslist.stuurVerzoek(test3);
+
+            string input = "start"; // invoer variabelen
+            string input2 = "start";
+            string input3 = "start";
+            string input4 = "start";
+            string input5 = "start";
+            string input6 = "start";
+
+
 
             while (input != "stop" )    // begin programma
             {
