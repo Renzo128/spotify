@@ -736,7 +736,27 @@ namespace Spotify{
                                                     Console.WriteLine("\n");
                                                     if (input4 == "inzien")
                                                     {
-                                                        selectedPerson.Playlistlibraries.readList();
+                                                        input5 = "";
+                                                        while (input5 != "terug")
+                                                        { 
+                                                            selectedPerson.Playlistlibraries.readList();
+                                                            Console.WriteLine("\n");
+                                                            Console.WriteLine("Type terug om terug te gaan.");
+                                                            Console.WriteLine("Type welke afspeellijst je wil inzien.");
+                                                            input5 = Console.ReadLine().ToLower();
+                                                            Console.WriteLine("\n");
+
+                                                            if (selectedPerson.Playlistlibraries.getPlaylistName(input5) != false)
+                                                            {
+                                                             Playlist selected = selectedPerson.Playlistlibraries.getSelectedPlaylist(input5);
+                                                                foreach (Music song in selected.Songlist)
+                                                                {
+                                                                    Console.WriteLine(song.Name);
+                                                                }
+                                                                Console.WriteLine("Einde van afspeellijst");
+                                                                Console.WriteLine("\n");
+                                                            }
+                                                        }
                                                     }
                                                     else if (input4 == "afspelen")
                                                     {                       // muziek afspelen
@@ -744,6 +764,8 @@ namespace Spotify{
                                                         while (input5 != "terug")
                                                         {
                                                             selectedPerson.Playlistlibraries.readList();
+                                                            Console.WriteLine("\n");
+
                                                             Console.WriteLine("Type terug om terug te gaan.");
                                                             Console.WriteLine("Kies een afspeellijst.");
                                                             input5 = Console.ReadLine().ToLower();
@@ -794,17 +816,48 @@ namespace Spotify{
                                                         Library selectedLibrary = selectedPerson.Playlistlibraries;
                                                         Playlist selectedPlaylist = selectedLibrary.getSelectedPlaylist(input4);
                                                         Console.WriteLine("\n");
+
                                                         if (selectedPlaylist != null)
                                                         {
-                                                            musicHolder.createPlaylist(selectedPlaylist);
-                                                            Console.WriteLine("afspeellijst is gekopiëerd.");
+                                                            string temp = input4;
+
+                                                            Console.WriteLine("Geef een naam voor de afspeellijst.");
+                                                            input4 = Console.ReadLine();
                                                             Console.WriteLine("\n");
+                                                            if (input4 != null)
+                                                            {
+                                                                if (musicHolder.getSelectedPlaylist(input4) == null)
+                                                                {
+                                                                    //selectedPlaylist.Playlistname = input4;
+                                                                    Playlist newplaylist = new Playlist(input4);
+                                                                    foreach(Music Song in selectedPlaylist.Songlist)
+                                                                    {
+                                                                        newplaylist.Songlist.Add(Song);
+                                                                    }
+                                                                    musicHolder.createPlaylist(newplaylist);
+
+                                                                    Console.WriteLine("afspeellijst is gekopiëerd.");
+                                                                    Console.WriteLine("\n");
+                                                                }
+                                                                else
+                                                                {
+                                                                    Console.WriteLine("De afspeellijst naam bestaat al.");
+                                                                    Console.WriteLine("\n");
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                Console.WriteLine("Kan geen lege waarde zoeken.");
+                                                                Console.WriteLine("\n");
+                                                            }
+
                                                         }
                                                         else
                                                         {
                                                             Console.WriteLine("Deze afspeellijst bestaat niet.");
                                                             Console.WriteLine("\n");
                                                         }
+
                                                     }
                                                     else if (input4 != "terug")
                                                     {

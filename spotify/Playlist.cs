@@ -19,7 +19,7 @@ namespace playlist
             this.playlistname = playlistname;
         }
 
-        public string Playlistname { get { return playlistname; } }
+        public string Playlistname { get { return playlistname; } set { this.playlistname = value; } }
         public List<Music> Songlist { get { return songlist; } }
         public void addsong(Music music)    // muziek toevoegen aan list
         {
